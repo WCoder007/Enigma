@@ -1,0 +1,403 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gamePlay {
+    display: none;
+}
+
+.gameBoard {
+    display: none;
+}
+
+body {
+    font-family: "Inconsolata", monospace;
+    line-height: 1.6;
+}
+
+
+/* Let's get this party started */
+
+#output::-webkit-scrollbar {
+    width: 1em;
+}
+
+
+/* Track */
+
+#output::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgb(3, 3, 3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+#output::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(240, 235, 235, 0.8);
+    bottom: 0;
+}
+
+#output::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(240, 235, 235, 0.8)
+}
+
+header {
+    text-align: center;
+    margin: 10px auto;
+    padding: 0 10px;
+}
+
+#rock,
+#paper,
+#scissors {
+    margin: auto;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.res-btn {
+    display: none;
+    background: #f1f1f1;
+    color: #333;
+    padding: 0.4rem 1.3rem;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+
+/* .res-btn:hover {
+    background: #feca57;
+    color: aliceblue;
+} */
+
+.score {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.score p {
+    font-size: 20px;
+}
+
+.score p:first-child {
+    background: #feca57;
+    color: #f1f1f1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.score p:last-child {
+    background: #333;
+    color: #f1f1f1;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 3rem;
+    text-align: center;
+    padding-right: 10px;
+    outline: none;
+    border: none;
+}
+
+.choice {
+    cursor: pointer;
+}
+
+.choice:hover:nth-child(1) {
+    color: #ff6b6b;
+}
+
+.choice:hover:nth-child(2) {
+    color: #01a3a4;
+}
+
+.choice:hover:nth-child(3) {
+    color: #feca57;
+}
+
+.text-win {
+    color: #2ecc71;
+}
+
+.text-lose {
+    color: #c0392b;
+}
+
+.sub-main {
+    margin-right: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.sub-main .new,
+.sub-main .join {
+    display: flex;
+    flex-flow: column;
+    width: 40vw;
+    height: 200px;
+    margin: 30px 10px;
+    padding: 5px 10px;
+    align-items: center;
+    border: 2px solid #333;
+    border-radius: 10px;
+    animation: fall 0.7s linear forwards;
+    transform-origin: top;
+    animation-delay: 0.2s;
+    visibility: hidden;
+}
+
+@keyframes fall {
+    0% {
+        transform: scale(0);
+        visibility: visible;
+    }
+    100% {
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+::placeholder {
+    opacity: 0.4;
+}
+
+#chat-controls ::placeholder {
+    font-size: 25px;
+    color: white;
+}
+
+#chat-controls form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    border-top: 3px solid #fff;
+}
+
+input {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #feca57;
+    margin: 5px 10px;
+    padding: 2px 0;
+    transition: 0.5s;
+}
+
+#new,
+#join {
+    border: none;
+    outline: none;
+    padding: 2px 10px;
+    color: #333;
+    background: #feca57;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#new:hover,
+#join:hover {
+    color: aliceblue;
+    opacity: 0.7;
+}
+
+#chat-window {
+    border: 3px solid #fff;
+    box-shadow: #01a3a4;
+    background: rgba(0, 0, 0, 0.8);
+    height: 92%;
+    margin: 30px;
+    border-radius: 10px;
+    display: none;
+    position: relative;
+}
+
+#players-chat {
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#chat-controls {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: #000;
+    border-radius: 0 0 10px 10px;
+}
+
+#chat-controls input {
+    width: 80%;
+    background: inherit;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0;
+    border-right: 3px solid #fff;
+    padding: 10px 15px;
+    border-bottom: none;
+}
+
+#chat-controls button {
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #333;
+    padding: 0 10px;
+    font-size: 25px;
+    width: 20%;
+}
+
+.chat {
+    background-image: url(/icons/chatIcon.png);
+    z-index: 300;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    font-size: 30px;
+    color: #feca57;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+.jewelcount {
+    display: none;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    right: 1px;
+    top: -20px;
+    background: red;
+    border-radius: 60px;
+    padding: 3px;
+}
+
+#chatClose {
+    color: #DC143C;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    padding: 0;
+    height: 40px;
+    transform: translate(50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#opposite-player-name {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #000;
+    margin: 0;
+    padding: 6px;
+    border-bottom: 3px solid #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+#chatClose svg {
+    width: 35px;
+    height: 35px;
+}
+
+#chatClose:hover {
+    cursor: pointer;
+}
+
+#output {
+    height: 100%;
+    padding: 55px 0;
+    overflow-y: auto;
+}
+
+#output p {
+    color: white;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#chat-window #feedback {
+    color: white;
+    font-size: 20px;
+}
+
+
+/* only for mobile */
+
+@media (max-width: 500px) {
+    .choices {
+        display: flex;
+        flex-direction: column;
+    }
+    .choice {
+        padding: 10px 0;
+    }
+    .sub-main {
+        flex-direction: column;
+    }
+    .sub-main .new,
+    .sub-main .join {
+        width: 100%;
+    }
+    #chat-window {
+        height: 92%;
+    }
+    .fa-5x {
+        font-size: 3em !important;
+    }
+    #chat-controls input {
+        width: 75%;
+    }
+    #chat-controls button {
+        width: 25%;
+    }
+    .choice:hover {
+        color: #333;
+    }
+    #output {
+        height: 80%;
+    }
+    .choice:hover {
+        color: #000!important;
+    }
+}
