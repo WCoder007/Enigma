@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="/css/all.css">    
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="shortcut icon" href="/icons/rps.ico" type="image/x-icon" />
+    <title>Instructions</title>
+  </head>
+  <body>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- effect -->
+    <div class="main">
+      <header>        
+        <h1>
+          <span class="rock">How</span>
+          <span class="paper">to</span>
+          <span class="scissors">Play?</span>
+        </h1>
+      </header>
+    </br>
+       <section>
+        <!-- <div class="container">
+          <button id="restart" class="res-btn">Restart Game</button>
+          <div id="score" class="score">
+            <p>Player: 0</p>
+            <p>Computer: 0</p>
+          </div>
+          <h2>Make your selection</h2> -->
+          <div class="container" id="c1">
+            <h3>Game Story</h3><hr> 
+        <div class="menu">
+          <ul>
+            <li>It is LAP midsems and you are caught along with another person cheating in an exam. The faculty, Dr. Varun Datt feels that you 
+              and possibly the other one is involved in cheating. He decides to put you both in different rooms and subject you to prisoners dilemma.</li>
+            <li>In each round, both students/players must make the choice to blame the other person or stay silent. If both players choose to stay silent, 
+              they both recieve 3 points. If both players blame, they each receive 0. If one choose to stay silent and the other doesn't, 
+              the person who stays silent receives -1 points while the person who blames receives 5 points. The guestioning goes on for 3 rounds.</li>
+          </ul>
+          <br>
+          <table border="1">
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="4">Blame</th>
+                <th colspan="4">Stay Silent</th>
+              </tr>
+              <tr>
+                <th>Blame</th>
+                <td colspan="4">(0,0)</td>
+                <td colspan="4">(5,-1)</td>
+              </tr>
+              <tr>
+                <th>Stay Silent</th>
+                <td colspan="4">(-1,5)</td>
+                <td colspan="4">(3,3)</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        </br>
+        <h3>Basic Rules for Multiplayer Game</h3> <hr> 
+        <div class="menu">
+          <ul style="list-style-type:none;">
+            <li>Player 1: Create a new game by entering the username and click on <b>New Game</b>.</li>
+            <li>
+              Player 2: Enter another username and the room id that is displayed
+              on first window. Click on <b>Join Game</b>.
+            </li>
+            <br>
+            <li><b>Click the button below to start</b></li>
+          </ul>
+        </div>
+        <div class="play">
+          <h1>
+            <br />
+            <!-- <a href="/computer">computer</a> <br />| <br /> -->
+            <a href="/multiplayer">Play Game</a> 
+            <!-- <a href="/instructions">How to Play?</a> -->
+          </h1>
+        </div>
+      </div>
+      </section> 
+
+      <!-- modal -->
+      <div class="modal">
+        <div id="result" class="modal-content"></div>
+      </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="/js/computer.js"></script>
+  </body>
+</html>

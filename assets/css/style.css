@@ -401,3 +401,50 @@ input {
         color: #000!important;
     }
 }
+
+/* for table */
+table, th, td {
+    border: 1px solid black;
+  }
+
+table {
+  width: 60%;
+  margin: auto;
+}
+th, td {
+    border: 1px solid black;
+    width: 20%;
+  }
+th {
+    background-color: #f2f2f2;
+}
+.play {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    text-align: center;
+  }
+  
+  .play h1 {
+    margin-bottom: 10px;
+  }
+  .play a {
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
+  
+  .play a:nth-child(2) {
+    background: #feca57;
+    color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+  
+  .play a:nth-child(2):hover {
+    color: #333;
+    opacity: 0.8;
+  }
+  
+  
