@@ -24,11 +24,11 @@ express.get("/loaderio-c22eb21e6fd039f5bb76ec284ff22809",(req,res)=>{
 //Server Setup
 if (process.env.PORT) {
     var server = express.listen(process.env.PORT||80, process.env.IP, function() {
-        console.log("THe Server is running");
+        console.log("The Server is running");
     });
 } else {
     var server = express.listen(3000, function() {
-        console.log("THe Server is running");
+        console.log("The Server is running");
     });
 }
 

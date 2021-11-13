@@ -102,9 +102,9 @@ socket.on("newGame", function(data) {
 // When one player leaves. Another player should get notified
 socket.on("informAboutExit", function(data) {
     var { leaver } = data
-    if(confirm(`Player ${leaver.name} left the game. Do you want to go back to play with computer? `)) {
-        history.back();
-        window.location="/computer";
+    if(confirm(`Player ${leaver.name} left the game. Do you want to replay? `)) {
+        //history.back();
+        window.location="/multiplayer";
     }else{
         window.location="/";
     }
