@@ -38,12 +38,12 @@ var io = socket(server);
 var choice1 = "",
     choice2 = "";
 var players = [];
-
+var totalGames, gameCnt = 0;
 //FUNCTIONS
 
 //Function to calculate winner
 function getWinner(p, c) {
-    if (p === c) {
+    /* if (p === c) {
         return "draw";
     } else if (p === "rock") {
         if (c === "paper") {
@@ -63,15 +63,41 @@ function getWinner(p, c) {
         } else {
             return "1";
         }
+    } */
+    if (p === "blame") {
+        if (c === "blame") {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+    else {
+        if (c === "blame") {
+            return 3;
+        }
+        else {
+            return 4;
+        }
     }
 }
-//Function to do executed after gettin both choices
+//Function to execute after getting both choices
 function result(roomID) {
+
+    /* if(gameCnt == totalGames) {
+        socket.emit("endgame", {});
+    }
+    else {
+        
+    } */
+    gameCnt++;
     var winner = getWinner(choice1, choice2);
     io.sockets.to(roomID).emit("result", {
         winner: winner,
         choice1: choice1,
-        choice2: choice2
+        choice2: choice2,
+        gameCnt: gameCnt,
+        totalGames: totalGames
     });
     choice1 = "";
     choice2 = "";
@@ -117,9 +143,10 @@ io.on("connection", function(socket) {
         })
         socket.join(room);
         socket.isMultiplayerGame = true;
+        totalGames = Number(data.totalGames);
         socket.emit("newGame", {
             name: data.name,
-            room: room
+            room: room,
         });
     });
     //Join Game Listener
@@ -154,6 +181,7 @@ io.on("connection", function(socket) {
         console.log(choice1, choice2);
         if (choice2 != "") {
             result(data.room);
+            //gameCnt++;
         }
     });
     //Listener to Player 2's Choice
@@ -172,4 +200,8 @@ io.on("connection", function(socket) {
     socket.on("typing", function(data) {
         socket.broadcast.to(data.room).emit("typing", data.player);
     });
+    /* console.log(gameCnt);
+    if(gameCnt == totalGames) {
+        socket.emit("endgame");
+    } */
 });
