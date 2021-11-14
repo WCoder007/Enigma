@@ -316,6 +316,22 @@ input {
     width: 32px;
 }
 
+.final {
+    display: flex;
+    flex-flow: column;
+    width: 40vw;
+    height: 200px;
+    margin: 30px 10px;
+    padding: 5px 10px;
+    align-items: center;
+    border: 2px solid #333;
+    border-radius: 10px;
+    animation: fall 0.7s linear forwards;
+    transform-origin: top;
+    animation-delay: 0.2s;
+    visibility: hidden;
+}
+
 .jewelcount {
     display: none;
     color: white;

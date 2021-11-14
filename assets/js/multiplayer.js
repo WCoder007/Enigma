@@ -248,23 +248,23 @@ function ResultDisplay(res, opponentChoice) {
 function showFinalScore() {
     $(".gameBoard").fadeOut();
     const scoreElement = `
-      <h1 id="scoreHeader">Final Scores</h1>
+      <h1 id="scoreHeader" style="color:tomato;">Final Scores</h1>
     `;
     $('.container').append(scoreElement);
 
     if (playerType) {
         const score = `
             <hr>
-            <p><strong>You</strong> scored <strong>${scoreboard.player1}</strong> points</p>
-            <p>Your <strong>opponent</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+            <p style="color:powderblue;"><strong>You</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+            <p style="color:lightgreen;">Your <strong>opponent</strong> scored <strong>${scoreboard.player2}</strong> points</p>
         `;
         $('#scoreHeader').append(score);
     }
     else {
         const score = `
             <hr>
-            <p><strong>You</strong> scored <strong>${scoreboard.player2}</strong> points</p>
-            <p>Your <strong>opponent</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+            <p style="color:powderblue;"><strong>You</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+            <p style="color:lightgreen;">Your <strong>opponent</strong> scored <strong>${scoreboard.player1}</strong> points</p>
         `;
         $('#scoreHeader').append(score);
     }
