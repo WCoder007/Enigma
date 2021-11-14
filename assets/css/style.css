@@ -236,7 +236,10 @@ input {
     color: #333;
     background: #fe7857be;
     border-radius: 10px;
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 200px;
     width: 100%;
     font-size: 20px;
     font-weight: 500;
