@@ -228,6 +228,26 @@ input {
     opacity: 0.7;
 }
 
+#blame,
+#silent {
+    border: none;
+    outline: none;
+    padding: 2px 10px;
+    color: #333;
+    background: #fe7857be;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#blame:hover,
+#silent:hover {
+    color: aliceblue;
+    opacity: 0.7;
+}
+
 #chat-window {
     border: 3px solid #fff;
     box-shadow: #01a3a4;
