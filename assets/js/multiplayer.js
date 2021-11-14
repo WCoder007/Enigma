@@ -20,8 +20,6 @@ const result = document.getElementById("result");
 //const restart = document.getElementById("restart");
 const modal = document.querySelector(".modal");
 var scoreboard = {
-    totalGames: 0,
-    gameCnt: 0,
     player1: 0,
     player2: 0
 };
@@ -62,13 +60,13 @@ function disconnect() {
 $("#new").on("click", function() {
     playerType = true;
     playerName = $("#nameNew").val();
-    scoreboard.totalGames = Number($("#games").val());
+    let totalGames = Number($("#games").val());
     $("#player1Name").html(playerName);
-    if (!playerName || !scoreboard.totalGames) {
+    if (!playerName || !totalGames) {
         alert("Please enter your name and total no. of games.");
         return;
     }
-    socket.emit("createGame", { name: playerName,  totalGames: scoreboard.totalGames});
+    socket.emit("createGame", { name: playerName,  totalGames: totalGames});
     $(".menu").fadeOut();
     $(".gameBoard").fadeIn();
 });
@@ -141,7 +139,6 @@ socket.on("err", function(err) {
 });
 //Result Listener
 socket.on("result", function(data) {
-    //scoreboard.gameCnt++;
     console.log(data.totalGames, data.gameCnt);
     if (playerType) {
         showWinner(data.winner, data.choice2, data.gameCnt, data.totalGames);
@@ -205,17 +202,13 @@ socket.on("typing", function(data) {
         output.scrollTop = output.scrollHeight - output.clientHeight;
 });
 
-/* socket.on("endgame", function() {
-    window.location = "/";
-}); */
-
 // Play game
 function play(e) {
     //restart.style.display = "inline-block";
     if (playerChoice === "") {
         console.log(e);
         playerChoice = e;
-        //$("#" + e).css("color", "#c72121");
+        $("#" + e).css("color", "#c72121");
         if (playerType) {
             socket.emit("choice1", {
                 choice: playerChoice,
@@ -246,123 +239,101 @@ $("#chatClose").on("click", function() {
 });
 
 function ResultDisplay(res, opponentChoice) {
-    /* result.innerHTML = `
-      <h1 class="text-${res}">You ${res.charAt(0).toUpperCase() +
-    res.slice(1)}</h1>
-      <i class="fas fa-hand-${opponentChoice} fa-10x"></i>
-      <p>Opponent Chose <strong>${opponentChoice.charAt(0).toUpperCase() +
-        opponentChoice.slice(1)}</strong></p>
-    `; */
-
     result.innerHTML = `
       <h1">You score ${res} points</h1>
       <p>Opponent Chose <strong>${opponentChoice}</strong></p>
     `;
 }
 
+function showFinalScore() {
+    $(".gameBoard").fadeOut();
+    const scoreElement = `
+      <h1 id="scoreHeader">Final Scores</h1>
+    `;
+    $('.container').append(scoreElement);
+
+    if (playerType) {
+        const score = `
+            <hr>
+            <p><strong>You</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+            <p>Your <strong>opponent</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+        `;
+        $('#scoreHeader').append(score);
+    }
+    else {
+        const score = `
+            <hr>
+            <p><strong>You</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+            <p>Your <strong>opponent</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+        `;
+        $('#scoreHeader').append(score);
+    }
+}
+
 function showWinner(winner, opponentChoice, gameCnt, totalGames) {
-    /* if (winner === "1") {
+
+    if (winner === 1) {
         // Inc player score
-        scoreboard.player1++;
+        scoreboard.player1 += 0;
+        scoreboard.player2 += 0;
+
         // Show modal result
         if (playerType) {
-            ResultDisplay("win", opponentChoice);
-        } else {
-            ResultDisplay("lose", opponentChoice);
+            ResultDisplay("0", opponentChoice);
+        } 
+        else {
+            ResultDisplay("0", opponentChoice);
         }
     } 
-    else if (winner === "2") {
-        // Inc computer score
-        scoreboard.player2++;
+    else if (winner === 2) {
+        scoreboard.player1 += 5;
+        scoreboard.player2 += -1;
+
         // Show modal result
-        if (!playerType) {
-            ResultDisplay("win", opponentChoice);
-        } else {
-            ResultDisplay("lose", opponentChoice);
+        if (playerType) {
+            ResultDisplay("5", opponentChoice);
+        } 
+        else {
+            ResultDisplay("-1", opponentChoice);
         }
-    } 
+    }
+    else if (winner === 3) {
+        scoreboard.player1 += -1;
+        scoreboard.player2 += 5;
+
+        // Show modal result
+        if (playerType) {
+            ResultDisplay("-1", opponentChoice);
+        } 
+        else {
+            ResultDisplay("5", opponentChoice);
+        }
+    }
     else {
-        result.innerHTML = `
-      <h1>It's A Draw</h1>
-      <i class="fas fa-hand-${opponentChoice} fa-10x"></i>
-      o
-    `;
-    } */
+        scoreboard.player1 += 3;
+        scoreboard.player2 += 3;
+
+        // Show modal result
+        if (playerType) {
+            ResultDisplay("3", opponentChoice);
+        } 
+        else {
+            ResultDisplay("3", opponentChoice);
+        }
+    }
+
+    // Show score
+    $("#score #p1").html(scoreboard.player1);
+    $("#score #p2").html(scoreboard.player2);
+
+    modal.style.display = "block";
+    setTimeout(()=>{$('.modal').fadeOut(800)},1200);
 
     if(gameCnt == totalGames) {
-        window.location = "/";
-    }
-    else
-    {
-        if (winner === 1) {
-            // Inc player score
-            scoreboard.player1 += 0;
-            scoreboard.player2 += 0;
-
-            // Show modal result
-            if (playerType) {
-                ResultDisplay("0", opponentChoice);
-            } 
-            else {
-                ResultDisplay("0", opponentChoice);
-            }
-        } 
-        else if (winner === 2) {
-            scoreboard.player1 += 5;
-            scoreboard.player2 += -1;
-
-            // Show modal result
-            if (playerType) {
-                ResultDisplay("5", opponentChoice);
-            } 
-            else {
-                ResultDisplay("-1", opponentChoice);
-            }
-        }
-        else if (winner === 3) {
-            scoreboard.player1 += -1;
-            scoreboard.player2 += 5;
-
-            // Show modal result
-            if (playerType) {
-                ResultDisplay("-1", opponentChoice);
-            } 
-            else {
-                ResultDisplay("5", opponentChoice);
-            }
-        }
-        else {
-            scoreboard.player1 += 3;
-            scoreboard.player2 += 3;
-
-            // Show modal result
-            if (playerType) {
-                ResultDisplay("3", opponentChoice);
-            } 
-            else {
-                ResultDisplay("3", opponentChoice);
-            }
-        }
-
-        // Show score
-        $("#score #p1").html(scoreboard.player1);
-        $("#score #p2").html(scoreboard.player2);
-
-        modal.style.display = "block";
-        setTimeout(()=>{$('.modal').fadeOut(800)},1200)
+        showFinalScore();
     }
 }
 
-// Restart game
-/* function restartGame() {
-  scoreboard.player1 = 0;
-  scoreboard.player2 = 0;
-  score.innerHTML = `
-    <p>Player: 0</p>
-    <p>Computer: 0</p>
-  `;
-}
- */
 // Clear modal
 function clearModal(e) {
     if (e.target == modal) {
@@ -371,9 +342,11 @@ function clearModal(e) {
 }
 
 // Event listeners
-//choices.forEach(choice => choice.addEventListener("click", play));
-$(".choices").on('click', '[data-fa-i2svg]',function() {
-    play($(this)[0].id);
+$("#blame").on('click',function() {
+    play('blame');
+});
+$("#silent").on('click',function() {
+    play('silent');
 });
 window.addEventListener("click", clearModal);
 //restart.addEventListener("click", restartGame);

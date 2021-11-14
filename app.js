@@ -43,27 +43,7 @@ var totalGames, gameCnt = 0;
 
 //Function to calculate winner
 function getWinner(p, c) {
-    /* if (p === c) {
-        return "draw";
-    } else if (p === "rock") {
-        if (c === "paper") {
-            return "2";
-        } else {
-            return "1";
-        }
-    } else if (p === "paper") {
-        if (c === "scissors") {
-            return "2";
-        } else {
-            return "1";
-        }
-    } else if (p === "scissors") {
-        if (c === "rock") {
-            return "2";
-        } else {
-            return "1";
-        }
-    } */
+
     if (p === "blame") {
         if (c === "blame") {
             return 1;
@@ -83,13 +63,6 @@ function getWinner(p, c) {
 }
 //Function to execute after getting both choices
 function result(roomID) {
-
-    /* if(gameCnt == totalGames) {
-        socket.emit("endgame", {});
-    }
-    else {
-        
-    } */
     gameCnt++;
     var winner = getWinner(choice1, choice2);
     io.sockets.to(roomID).emit("result", {
@@ -200,8 +173,4 @@ io.on("connection", function(socket) {
     socket.on("typing", function(data) {
         socket.broadcast.to(data.room).emit("typing", data.player);
     });
-    /* console.log(gameCnt);
-    if(gameCnt == totalGames) {
-        socket.emit("endgame");
-    } */
 });
