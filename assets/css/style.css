@@ -233,8 +233,8 @@ input {
     border: none;
     outline: none;
     padding: 2px 10px;
-    color: #333;
-    background: #fe7857be;
+    color: #fff;
+    background: #01a3a4;
     border-radius: 10px;
     display: flex;
     align-items: center;

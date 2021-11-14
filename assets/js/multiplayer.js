@@ -1,3 +1,4 @@
+//CLIENT 
 //MAKE CONNECTION TO THE SOCKET
  var socket = io.connect("http://localhost:3000");
 
@@ -248,23 +249,23 @@ function ResultDisplay(res, opponentChoice) {
 function showFinalScore() {
     $(".gameBoard").fadeOut();
     const scoreElement = `
-      <h1 id="scoreHeader" style="color:tomato;">Final Scores</h1>
+      <h1 id="scoreHeader" style="color:#01a3a4;"><b>Game Over! </b></h1>
     `;
     $('.container').append(scoreElement);
 
     if (playerType) {
         const score = `
             <hr>
-            <p style="color:powderblue;"><strong>You</strong> scored <strong>${scoreboard.player1}</strong> points</p>
-            <p style="color:lightgreen;">Your <strong>opponent</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+            <p style="color:#25D366;"><strong>You</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+            <p style="color:tomato;">Your <strong>opponent</strong> scored <strong>${scoreboard.player2}</strong> points</p>
         `;
         $('#scoreHeader').append(score);
     }
     else {
         const score = `
             <hr>
-            <p style="color:powderblue;"><strong>You</strong> scored <strong>${scoreboard.player2}</strong> points</p>
-            <p style="color:lightgreen;">Your <strong>opponent</strong> scored <strong>${scoreboard.player1}</strong> points</p>
+            <p style="color:#25D366;"><strong>You</strong> scored <strong>${scoreboard.player2}</strong> points</p>
+            <p style="color:tomato;">Your <strong>opponent</strong> scored <strong>${scoreboard.player1}</strong> points</p>
         `;
         $('#scoreHeader').append(score);
     }

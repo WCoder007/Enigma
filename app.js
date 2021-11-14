@@ -1,3 +1,5 @@
+//SERVER
+
 var expresss = require("express");
 var express = expresss();
 var socket = require("socket.io");
@@ -82,6 +84,7 @@ io.on("connection", function(socket) {
     //Disconnect
     socket.on("disconnect", function(data) {
         if(socket.isMultiplayerGame) {
+            gameCnt=0;
             var leavingPlayer = players.find(player => player.socket === socket.id);
             players = players.filter(player => player.socket !== leavingPlayer.socket);
             var playingPlayer = players.find(player => player.room === leavingPlayer.room);
@@ -92,6 +95,7 @@ io.on("connection", function(socket) {
                 player : playingPlayer,
                 leaver : leavingPlayer
             });
+
         }
 
         io.of("/")
