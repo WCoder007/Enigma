@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("cho",["Variable"],[["choice1",,[[,,,,0,"File:app.js:choice1"]]],["choice2",,[[,,,,0,"File:app.js:choice2"]]]]);

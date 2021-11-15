@@ -1,9 +1,19 @@
 //SERVER
 
+// Variable: expresss
+// Includes the Express module
 var expresss = require("express");
+// Variable: express
+// new express application
 var express = expresss();
+// Variable: socket
+// Includes the socket.io module
 var socket = require("socket.io");
+// Variable: randomstring
+// Includes the randomstring module
 var randomstring = require("randomstring");
+// Constant: path
+// Includes the path module
 const path = require('path');
 
 express.set("view engine", "ejs");
@@ -34,16 +44,39 @@ if (process.env.PORT) {
     });
 }
 
+
+// Variable: io
 //Socket Setup
 var io = socket(server);
-//GAME VARIABLES
+
+/* Variables: Game Variables
+
+   choice1 - Choice of player 1
+   choice2 - Choice of player 2
+   players   - list of players
+   totalGame   - total number of games
+   gameCnt   - increments on every round
+*/
 var choice1 = "",
     choice2 = "";
 var players = [];
 var totalGames, gameCnt = 0;
 //FUNCTIONS
 
-//Function to calculate winner
+/* Function: getWinner
+
+   calculate the winner in each round
+
+   Parameters:
+
+      p - Choice of first player
+      c - Choice of second player
+
+   Returns:
+
+      An integer from 1 to 4 depending on the conditions
+
+*/
 function getWinner(p, c) {
 
     if (p === "blame") {
@@ -63,7 +96,17 @@ function getWinner(p, c) {
         }
     }
 }
-//Function to execute after getting both choices
+
+/* Function: result
+
+   Result execution after getting both choices and emits it
+
+   Parameters:
+
+      roomID - Room ID of the players
+
+*/
+
 function result(roomID) {
     gameCnt++;
     var winner = getWinner(choice1, choice2);

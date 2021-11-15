@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tot",["Variable"],[["totalGame",,[[,,,,0,"File:app.js:totalGame"]]]]);

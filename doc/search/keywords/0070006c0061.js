@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("pla",["Function","Variable"],[["play",,[[,,,,0,"File:multiplayer.js:play"]]],["playerChoice",,[[,,,,1,"File:multiplayer.js:playerChoice"]]],["playerName",,[[,,,,1,"File:multiplayer.js:playerName"]]],["players",,[[,,,,1,"File:app.js:players"]]],["playerType",,[[,,,,1,"File:multiplayer.js:playerType"]]]]);

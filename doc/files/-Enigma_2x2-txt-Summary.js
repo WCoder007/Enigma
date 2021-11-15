@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:.Enigma_2x2.txt",".Enigma 2x2.txt");NDSummary.OnSummaryLoaded("File:.Enigma_2x2.txt",[["Text File","TextFile"]],[["Groups","Group"],["Information","Information"],["Sections","Section"]],[[1,0,2,"Enigma 2x2","Enigma_2x2"],[2,0,0,"Information","Information"],[3,0,1,"Team Members","Team_Members"],[4,0,1,"Contact","Contact"]]);

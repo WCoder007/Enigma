@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("sco",["Variable"],[["scoreboard",,[[,,,,0,"File:multiplayer.js:scoreboard"]]]]);

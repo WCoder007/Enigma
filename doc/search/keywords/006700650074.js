@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("get",["Function"],[["getWinner",,[[,,,,0,"File:app.js:getWinner"]]]]);

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("soc",["Variable"],[["socket",,[[,,,,0,"File:app.js:socket"]]]]);

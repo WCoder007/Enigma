@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("win",["Variable"],[["winner",,[[,,,,0,"File:multiplayer.js:winner"]]]]);
